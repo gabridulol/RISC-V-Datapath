@@ -1,5 +1,4 @@
 module Registers (
-    input clk, reset,
     input RegWrite,
     input [4:0] readReg1, readReg2
     input [4:0] writeReg

@@ -1,15 +1,13 @@
-module ProgramCounter (
-    input clk,               
-    input reset,             
-    input [31:0] pcIn,    
-    output reg [31:0] pc     
+module PC (
+    input clk, reset   
+    input [31:0] PCIn,
+    output [31:0] PCOut
 );
-
-    always @(posedge clk or posedge reset) begin
+    always @(posedge clk) begin
         if (reset) begin
-            pc <= 32'b0;
+            PCOut <= 32'b0;
         end else begin
-            pc <= pcIn; 
+            PCOut <= PCIn; 
         end
     end
 endmodule
