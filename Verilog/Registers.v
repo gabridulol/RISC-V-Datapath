@@ -9,22 +9,18 @@ module Registers (
 
     reg [31:0] registers [0:31];
 
-    always @(posedge clk or posedge reset) begin
-        if (reset) begin
-            for (integer i = 0; i < 32; i = i + 1) begin
-                registers[i] <= 0;
-            end
-        end else if (RegWrite) begin
-            registers[writeReg] <= writeData;
-        end
-    end
-
     always @(readReg1, registers[readReg1]) begin
         readData1 <= registers[readReg1];
     end
 
     always @(readReg2, registers[readReg2]) begin
         readData2 <= registers[readReg2];
+    end
+
+    always @(*) begin
+        if (RegWrite) begin
+            readData1 = writeData;
+        end
     end
 
 endmodule
