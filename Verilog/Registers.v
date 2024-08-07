@@ -8,10 +8,6 @@ module Registers (
 
     reg [31:0] registers [0:31];
 
-    initial begin
-        $readmemb("Verilog/Input/Registers.mem", registers);
-    end
-
     always @(readReg1, registers[readReg1]) begin
         readData1 <= registers[readReg1];
     end

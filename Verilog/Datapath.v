@@ -1,89 +1,48 @@
-module Datapath_tb;
+module Datapath_Testbench;
     reg clk, reset;
-    reg [31:0] PCIn;
-    wire [31:0] PCOut;
-    wire [31:0] Instruction;
 
-    // Instâncias dos módulos
-    PC uutPC (
-        .clk(clk),
-        .reset(reset),
-        .PCIn(PCIn),
-        .PCOut(PCOut)
-    );
+    Datapath datapath(clk, reset);
 
-    InstructionMemory uutInstructionMemory (
-        .ReadAddress(PCOut),
-        .Instruction(Instruction)
-    );
-
-    // Gerador de clock
-    always begin
-        #5 clk = ~clk; // Toggle clock every 5 time units
-    end
-
-    // Sequência de inicialização e teste
     initial begin
-        // Inicialização
-        clk = 0;
-        reset = 0;
+        // Load memory files
+        $readmemb("Verilog/Input/InstructionMemory.mem", datapath.instructionmemory.memory);
+        $readmemb("Verilog/Input/DataMemory.mem", datapath.datamemory.memory);
+        $readmemb("Verilog/Input/Registers.mem", datapath.registers.registers);
+        
+        // Print memory contents
+        $display("Instruction Memory Contents:");
+        for (integer i = 0; i < 32; i = i + 1) begin
+            $display("instructionmemory[%0d] = %h", i, datapath.instructionmemory.memory[i]);
+        end
 
-        // Aplicar reset
-        reset = 1;
-        #10;
-        reset = 0;
+        $display("Data Memory Contents:");
+        for (integer i = 0; i < 32; i = i + 1) begin
+            $display("datamemory[%0d] = %h", i, datapath.datamemory.memory[i]);
+        end
 
-        // Teste 1
-        #10;
-        PCIn = 32'h00000000;
-        #10;
-        $display("Time = %0t | PCIn = %h | PCOut = %h | Instruction = %b", $time, PCIn, PCOut, Instruction);
-
-        // Teste 2
-        #10;
-        PCIn = 32'h00000004;
-        #10;
-        $display("Time = %0t | PCIn = %h | PCOut = %h | Instruction = %b", $time, PCIn, PCOut, Instruction);
-
-        // Teste 3
-        #10;
-        PCIn = 32'h00000008;
-        #10;
-        $display("Time = %0t | PCIn = %h | PCOut = %h | Instruction = %b", $time, PCIn, PCOut, Instruction);
-
-        // Teste 4
-        #10;
-        PCIn = 32'h0000000C;
-        #10;
-        $display("Time = %0t | PCIn = %h | PCOut = %h | Instruction = %b", $time, PCIn, PCOut, Instruction);
-
-        // Teste 5
-        #10;
-        PCIn = 32'h00000010;
-        #10;
-        $display("Time = %0t | PCIn = %h | PCOut = %h | Instruction = %b", $time, PCIn, PCOut, Instruction);
-
-        // Teste 6
-        #10;
-        PCIn = 32'h00000014;
-        #10;
-        $display("Time = %0t | PCIn = %h | PCOut = %h | Instruction = %b", $time, PCIn, PCOut, Instruction);
-
-        // Teste 7
-        #10;
-        PCIn = 32'h00000018;
-        #10;
-        $display("Time = %0t | PCIn = %h | PCOut = %h | Instruction = %b", $time, PCIn, PCOut, Instruction);
-
-        // Teste 8
-        #10;
-        PCIn = 32'h0000001C;
-        #10;
-        $display("Time = %0t | PCIn = %h | PCOut = %h | Instruction = %b", $time, PCIn, PCOut, Instruction);
-
-        // Finalização do teste
-        #10;
-        $finish;
+        $display("Registers Contents:");
+        for (integer i = 0; i < 32; i = i + 1) begin
+            $display("registers[%0d] = %h", i, datapath.registers.registers[i]);
+        end
     end
+
+    initial begin
+        // Initial conditions
+        clk = 0;
+        reset = 1;
+        #5 reset = 0;
+    end
+
+    always #5 clk = ~clk; // Clock generation with a period of 10 units
+
+endmodule
+
+module Datapath (
+    input wire clk, reset
+);
+    
+    InstructionMemory instructionmemory();
+    DataMemory datamemory();
+    Registers registers();
 
 endmodule
