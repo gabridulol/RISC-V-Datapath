@@ -1,5 +1,5 @@
 module PC (
-    input wire clk, reset   
+    input wire clk, reset, 
     input wire [31:0] PCIn,
     output reg [31:0] PCOut
 );

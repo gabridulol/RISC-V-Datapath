@@ -5,12 +5,13 @@ module InstructionMemory (
 
     reg [31:0] memory [0:31];
 
+
     initial begin
         $readmemb("Verilog/Input/InstructionMemory.mem", memory);
     end
 
     always @(*) begin
-        Instruction = memory[ReadAddress];
+        Instruction = memory[ReadAddress / 4];
     end
 
 endmodule
