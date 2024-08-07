@@ -1,5 +1,5 @@
 module Control (
-    input wire [6:0] Instruction,
+    input wire [6:0] Instruction, // Opcode
     output reg Branch,
     output reg MemRead,
     output reg MemtoReg,
@@ -69,4 +69,3 @@ module Control (
     end
 
 endmodule
-
