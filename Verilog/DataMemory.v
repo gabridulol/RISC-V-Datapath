@@ -1,8 +1,8 @@
 module DataMemory (
-    input MemWrite, MemRead,
-    input [31:0] address,
-    input [31:0] writeData,
-    output [31:0] readData
+    input wire MemWrite, MemRead,
+    input wire [31:0] address,
+    input wire [31:0] writeData,
+    output reg [31:0] readData
 );
 
 reg [31:0] memory [0:31];

@@ -25,12 +25,11 @@ endmodule
 //     );
 
 //     initial begin
-//         $display("Testing Instruction Memory Read");
 //         for (ReadAddress = 0; ReadAddress < 32; ReadAddress = ReadAddress + 1) begin
 //             #10;
 //             $display("ReadAddress = %d, Instruction = %b", ReadAddress, Instruction);
 //         end
-//         $stop;
+//         $finish
 //     end
 
 // endmodule

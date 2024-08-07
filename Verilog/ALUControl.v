@@ -1,7 +1,7 @@
 module ALUControl(
-    input [2:0] Instruction, // funct3
-    input [2:0] ALUOp,
-    output [3:0] ALUControl
+    input wire [2:0] Instruction, // funct3
+    input wire [2:0] ALUOp,
+    output reg [3:0] ALUControl
 );
 
     always @(*) begin
