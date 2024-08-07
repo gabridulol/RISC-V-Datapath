@@ -1,3 +1,5 @@
+`timescale 1ps/1ps
+
 module Datapath_Testbench;
     reg clk, reset;
 
@@ -5,19 +7,19 @@ module Datapath_Testbench;
 
     initial begin
         // Load memory files
-        $readmemb("Verilog/Input/InstructionMemory.mem", datapath.instructionmemory.memory);
         $readmemb("Verilog/Input/DataMemory.mem", datapath.datamemory.memory);
+        $readmemb("Verilog/Input/InstructionMemory.mem", datapath.instructionmemory.memory);
         $readmemb("Verilog/Input/Registers.mem", datapath.registers.registers);
         
         // Print memory contents
-        $display("Instruction Memory Contents:");
-        for (integer i = 0; i < 32; i = i + 1) begin
-            $display("instructionmemory[%0d] = %h", i, datapath.instructionmemory.memory[i]);
-        end
-
         $display("Data Memory Contents:");
         for (integer i = 0; i < 32; i = i + 1) begin
             $display("datamemory[%0d] = %h", i, datapath.datamemory.memory[i]);
+        end
+
+        $display("Instruction Memory Contents:");
+        for (integer i = 0; i < 32; i = i + 1) begin
+            $display("instructionmemory[%0d] = %h", i, datapath.instructionmemory.memory[i]);
         end
 
         $display("Registers Contents:");
@@ -35,22 +37,24 @@ module Datapath_Testbench;
 
     always #5 clk = ~clk; // Clock generation with a period of 10 units
 
-module Datapath (
-    input wire clk, reset
-);
-    
-    InstructionMemory instructionmemory();
-    DataMemory datamemory();
-    Registers registers();
-
 endmodule
 
 module Datapath (
     input wire clk, reset
 );
-    
-    InstructionMemory instructionmemory();
+
+    Add add0();
+    Add add1();
+    ALU alu();
+    ALUControl alucontrol();
+    Control control();
     DataMemory datamemory();
+    ImmGen immgen();
+    InstructionMemory instructionmemory();
+    Mux mux0();
+    Mux mux1();
+    Mux mux2();
+    PC pc();
     Registers registers();
 
 endmodule
