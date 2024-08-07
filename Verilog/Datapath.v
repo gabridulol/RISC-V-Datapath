@@ -1,5 +1,3 @@
-`timescale 1ps/1ps
-
 module Datapath_Testbench;
     reg clk, reset;
 
@@ -43,19 +41,32 @@ module Datapath (
     input wire clk, reset
 );
 
-    Add add0();
-    Add add1();
-    ALU alu();
-    ALUControl alucontrol();
-    Control control();
-    DataMemory datamemory();
-    ImmGen immgen();
-    InstructionMemory instructionmemory();
-    Mux mux0();
-    Mux mux1();
-    Mux mux2();
-    PC pc();
-    Registers registers();
+    wire [31:0] PCIn, PCOut;
+    wire [31:0] Instruction;
+    wire Branch, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite;
+    wire [2:0] ALUOp;
+    wire [31:0] readData1, readData2; // MUX Result DataMemory
+    wire [31:0] Immediate;
+    wire [3:0] ALUControl;
+    wire [31:0] MUXOut0, MUXOut1, MUXOut2;
+    wire [31:0] ALUResult;
+    wire zero;
+    wire [31:0] readData;
+    wire [31:0] addout0, addout1;
+
+    Add add0(PCOut, 00000000000000000000000000000100, addout0);
+    Add add1(PCOut, Immediate, addout1);
+    ALU alu(readData1, MUXOut0, ALUOp, ALUResult, zero);
+    ALUControl alucontrol(Instruction[14:12], ALUOp, ALUControl);
+    Control control(Instruction[6:0], Branch, MemRead, MemtoReg, ALUOp, MemWrite, ALUSrc, RegWrite);
+    DataMemory datamemory(MemWrite, MemRead, ALUResult, readData2, readData);
+    ImmGen immgen(Instruction, Immediate);
+    InstructionMemory instructionmemory(PCOut, Instruction);
+    Mux mux0(ALUSrc, readData2, Immediate, MUXOut0);
+    Mux mux1(addout1, addout0, Branch & zero, MUXOut1);
+    Mux mux2(ALUResult, readData, MemtoReg, MUXOut2);
+    PC pc(clk, reset, MUXOut1, PCOut);
+    Registers registers(RegWrite, Instruction[19:15], Instruction[24:20], Instruction[11:7], MUXOut2, readData1, readData2);
 
 endmodule
 
