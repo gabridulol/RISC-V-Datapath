@@ -1,5 +1,3 @@
 all:
-	iverilog -o outdp Verilog/
-
-run:
+	iverilog -o outdp Verilog/InstructionMemory.v
 	vvp outdp
