@@ -13,8 +13,7 @@ module ALU (
                      XOR  = 3'b000, 
                      SLL  = 3'b000, 
                      ORI  = 3'b000, 
-                     BNE  = 3'b000; 
-
+                     BNE  = 3'b000;
     always @(*) begin
         case (aluOp)
             ADD: result = a + b;
