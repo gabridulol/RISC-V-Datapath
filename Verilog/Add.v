@@ -6,3 +6,7 @@ module Add (
   assign sum = a + b;
 
 endmodule
+
+module Add_TB;
+
+endmodule
