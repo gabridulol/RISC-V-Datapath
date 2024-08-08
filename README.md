@@ -1,1 +1,4 @@
 # RISC-V-Datapath
+```
+make
+```
