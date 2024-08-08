@@ -1,5 +1,5 @@
 module Control (
-    input wire [6:0] Instruction, // Opcode
+    input wire [6:0] instruction,
     output reg Branch,
     output reg MemRead,
     output reg MemtoReg,
@@ -10,7 +10,7 @@ module Control (
 );
 
     always @(*) begin
-        case (Instruction)
+        case (instruction)
             7'b0000011: begin // lb
                 Branch = 0;
                 MemRead = 1;

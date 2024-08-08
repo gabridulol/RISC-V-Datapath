@@ -1,31 +1,12 @@
 module InstructionMemory (
-    input wire [31:0] ReadAddress,
-    output reg [31:0] Instruction
+    input wire [31:0] readAddress,
+    output reg [31:0] instruction
 );
 
     reg [31:0] memory [0:31];
 
     always @(*) begin
-        Instruction = memory[ReadAddress / 4];
+        instruction = memory[readAddress / 4];
     end
 
 endmodule
-
-// module InstructionMemory_TB;
-//     reg [31:0] ReadAddress;
-//     wire [31:0] Instruction;
-    
-//     InstructionMemory uut (
-//         .ReadAddress(ReadAddress),
-//         .Instruction(Instruction)
-//     );
-
-//     initial begin
-//         for (ReadAddress = 0; ReadAddress < 32; ReadAddress = ReadAddress + 4) begin
-//             #10;
-//             $display("ReadAddress = %d, Instruction = %b", ReadAddress, Instruction);
-//         end
-//         $finish
-//     end
-
-// endmodule

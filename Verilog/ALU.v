@@ -1,9 +1,9 @@
 module ALU (
     input wire [31:0] a,  
     input wire [31:0] b,     
-    input wire [2:0] ALUOp, 
+    input wire [3:0] ALUControl, 
     output reg [31:0] ALUResult,
-    output reg Zero
+    output reg zero
 );
 
     localparam [3:0] LB  = 4'b0010,
@@ -15,7 +15,7 @@ module ALU (
                      BNE  = 4'b0110; 
 
     always @(*) begin
-        case (ALUOp)
+        case (ALUControl) 
             LB: ALUResult = a + b;
             SB: ALUResult = a + b;
             ADD: ALUResult = a + b;
@@ -25,8 +25,7 @@ module ALU (
             BNE: ALUResult = (a != b) ? 1 : 0; 
             default: ALUResult = 32'b0;   
         endcase
-
-        Zero = (ALUResult == 32'b0) ? 1'b1 : 1'b0;
+        zero = (ALUResult == 32'b0) ? 1'b1 : 1'b0;
     end
 
 endmodule

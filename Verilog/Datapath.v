@@ -1,3 +1,5 @@
+`timescale 1ns/100ps
+
 module Datapath_Testbench;
     reg clk, reset;
 
@@ -11,7 +13,7 @@ module Datapath_Testbench;
         
         // Print memory contents
         $display("Data Memory Contents:");
-        for (integer i = 0; i < 32; i = i + 1) begin
+        for (integer i = 0; i < 512; i = i + 1) begin
             $display("datamemory[%0d] = %h", i, datapath.datamemory.memory[i]);
         end
 
@@ -20,9 +22,17 @@ module Datapath_Testbench;
             $display("instructionmemory[%0d] = %h", i, datapath.instructionmemory.memory[i]);
         end
 
+        
+    end
+
+    always @(datapath.Instruction === 32'hx) begin
         $display("Registers Contents:");
         for (integer i = 0; i < 32; i = i + 1) begin
             $display("registers[%0d] = %h", i, datapath.registers.registers[i]);
+        end
+        $display("Data Memory Contents:");
+        for (integer i = 0; i < 512; i = i + 1) begin
+            $display("datamemory[%0d] = %h", i, datapath.datamemory.memory[i]);
         end
     end
 
@@ -30,10 +40,12 @@ module Datapath_Testbench;
         // Initial conditions
         clk = 0;
         reset = 1;
-        #5 reset = 0;
+        #2 reset = 0;
     end
 
-    always #5 clk = ~clk; // Clock generation with a period of 10 units
+    always #1 clk <= ~clk; // Clock generation with a period of 10 units
+
+
 
 endmodule
 
@@ -45,7 +57,7 @@ module Datapath (
     wire [31:0] Instruction;
     wire Branch, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite;
     wire [2:0] ALUOp;
-    wire [31:0] readData1, readData2; // MUX Result DataMemory
+    wire [31:0] readData1, readData2;
     wire [31:0] Immediate;
     wire [3:0] ALUControl;
     wire [31:0] MUXOut0, MUXOut1, MUXOut2;
@@ -54,7 +66,7 @@ module Datapath (
     wire [31:0] readData;
     wire [31:0] addout0, addout1;
 
-    Add add0(PCOut, 00000000000000000000000000000100, addout0);
+    Add add0(PCOut, 32'h4, addout0);
     Add add1(PCOut, Immediate, addout1);
     ALU alu(readData1, MUXOut0, ALUOp, ALUResult, zero);
     ALUControl alucontrol(Instruction[14:12], ALUOp, ALUControl);
@@ -64,7 +76,7 @@ module Datapath (
     InstructionMemory instructionmemory(PCOut, Instruction);
     Mux mux0(ALUSrc, readData2, Immediate, MUXOut0);
     Mux mux1(addout1, addout0, Branch & zero, MUXOut1);
-    Mux mux2(ALUResult, readData, MemtoReg, MUXOut2);
+    Mux mux2(readData, ALUResult, MemtoReg, MUXOut2);
     PC pc(clk, reset, MUXOut1, PCOut);
     Registers registers(RegWrite, Instruction[19:15], Instruction[24:20], Instruction[11:7], MUXOut2, readData1, readData2);
 
