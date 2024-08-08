@@ -20,13 +20,13 @@ module Control (
                 ALUSrc = 1;
                 RegWrite = 1;
             end
-            7'b1100011: begin // sb
+            7'b0100011: begin // sb
                 Branch = 0;
                 MemRead = 0;
                 MemtoReg = 0;
                 ALUOp = 3'b000;
                 MemWrite = 1;
-                ALUSrc = 0;
+                ALUSrc = 1;
                 RegWrite = 0;
             end
             7'b0110011: begin // add, and, sll
@@ -38,7 +38,7 @@ module Control (
                 ALUSrc = 0;
                 RegWrite = 1;
             end
-            7'b1100011: begin // ori
+            7'b0010011: begin // ori
                 Branch = 0;
                 MemRead = 0;
                 MemtoReg = 0;
@@ -60,7 +60,7 @@ module Control (
                 Branch = 0;
                 MemRead = 0;
                 MemtoReg = 0;
-                ALUOp = 0;
+                ALUOp = 3'b000;
                 MemWrite = 0;
                 ALUSrc = 0;
                 RegWrite = 0;
