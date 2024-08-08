@@ -13,29 +13,24 @@ module Datapath_Testbench;
         for (integer i = 0; i < 32; i = i + 1) begin
             $display("DataMemory [%2d] = %d", i, datapath.datamemory.memory[i]);
         end
-        $display("\n\n");
-
+        $display();
         for (integer i = 0; i < 32; i = i + 1) begin
-            $display("InstructionMemory [%2d] = 0x%h", i, datapath.instructionmemory.memory[i]);
+            $display("InstructionMemory [%2d] = %h", i, datapath.instructionmemory.memory[i]);
         end
-        $display("\n\n");
-
+        $display();
         for (integer i = 0; i < 32; i = i + 1) begin
             $display("Register [%2d] = %d", i, datapath.registers.registers[i]);
         end
-        $display("\n\n");
+        $display();
     end
 
-    always @(datapath.Instruction === 32'bx) begin
+    always @(datapath.Instruction) begin
+        $display("Program Counter = %2d", datapath.pc.PCOut);
+        $display("Instruction = %h", datapath.instructionmemory.instruction);
         for (integer i = 0; i < 32; i = i + 1) begin
             $display("Register [%2d] = %d", i, datapath.registers.registers[i]);
-            
-        end
-         for (integer i = 0; i < 218; i = i + 1) begin
-             $display("DataMemory [%2d] = %d", i, datapath.datamemory.memory[i]);
-            
-        end
-        $display("\n\n");
+        end 
+        $display();
     end
 
     initial begin
@@ -65,7 +60,7 @@ module Datapath (
     wire [31:0] readData;
     wire [31:0] addout0, addout1;
 
-    Add add0(PCOut, 32'h4, addout0);
+    Add add0(PCOut, 4, addout0);
     Add add1(PCOut, Immediate, addout1);
     ALU alu(readData1, MUXOut0, ALUControl, ALUResult, zero);
     ALUControl alucontrol(Instruction[14:12], ALUOp, ALUControl);
