@@ -29,6 +29,11 @@ module Datapath_Testbench;
     always @(datapath.Instruction === 32'bx) begin
         for (integer i = 0; i < 32; i = i + 1) begin
             $display("Register [%2d] = %d", i, datapath.registers.registers[i]);
+            
+        end
+         for (integer i = 0; i < 218; i = i + 1) begin
+             $display("DataMemory [%2d] = %d", i, datapath.datamemory.memory[i]);
+            
         end
         $display("\n\n");
     end

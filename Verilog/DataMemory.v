@@ -5,7 +5,7 @@ module DataMemory (
     output reg [31:0] readData
 );
 
-reg [31:0] memory [0:31];
+reg [31:0] memory [0:217];
 
 always @(*) begin
     if (MemRead) begin

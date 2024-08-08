@@ -19,8 +19,8 @@ module ALU (
             LB: ALUResult = a + b;
             SB: ALUResult = a + b;
             ADD: ALUResult = a + b;
-            AND: ALUResult = a && b;
-            ORI: ALUResult = a || b;
+            AND: ALUResult = a & b;
+            ORI: ALUResult = a | b;
             SLL: ALUResult = a << b; 
             BNE: ALUResult = (a != b) ? 1 : 0; 
             default: ALUResult = 32'b0;   
