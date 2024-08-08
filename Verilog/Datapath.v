@@ -24,7 +24,7 @@ module Datapath_Testbench;
         $display();
     end
 
-    always @(datapath.Instruction) begin
+    always @(datapath.instructionmemory.instruction) begin
         $display("Program Counter = %2d", datapath.pc.PCOut);
         $display("Instruction = %h", datapath.instructionmemory.instruction);
         for (integer i = 0; i < 32; i = i + 1) begin
@@ -47,12 +47,12 @@ module Datapath (
     input wire clk, reset
 );
 
-    wire [31:0] PCIn, PCOut;
-    wire [31:0] Instruction;
+    wire [31:0] PCOut;
+    wire [31:0] instruction;
     wire Branch, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite;
     wire [2:0] ALUOp;
     wire [31:0] readData1, readData2;
-    wire [31:0] Immediate;
+    wire [31:0] immediate;
     wire [3:0] ALUControl;
     wire [31:0] MUXOut0, MUXOut1, MUXOut2;
     wire [31:0] ALUResult;
@@ -61,17 +61,17 @@ module Datapath (
     wire [31:0] addout0, addout1;
 
     Add add0(PCOut, 4, addout0);
-    Add add1(PCOut, Immediate, addout1);
+    Add add1(PCOut, immediate, addout1);
     ALU alu(readData1, MUXOut0, ALUControl, ALUResult, zero);
-    ALUControl alucontrol(Instruction[14:12], ALUOp, ALUControl);
-    Control control(Instruction[6:0], Branch, MemRead, MemtoReg, ALUOp, MemWrite, ALUSrc, RegWrite);
+    ALUControl alucontrol(instruction[14:12], ALUOp, ALUControl);
+    Control control(instruction[6:0], Branch, MemRead, MemtoReg, ALUOp, MemWrite, ALUSrc, RegWrite);
     DataMemory datamemory(MemWrite, MemRead, ALUResult, readData2, readData);
-    ImmGen immgen(Instruction, Immediate);
-    InstructionMemory instructionmemory(PCOut, Instruction);
-    Mux mux0(ALUSrc, readData2, Immediate, MUXOut0);
+    ImmGen immgen(instruction, immediate);
+    InstructionMemory instructionmemory(PCOut, instruction);
+    Mux mux0(ALUSrc, readData2, immediate, MUXOut0);
     Mux mux1(addout1, addout0, Branch & zero, MUXOut1);
     Mux mux2(readData, ALUResult, MemtoReg, MUXOut2);
     PC pc(clk, reset, MUXOut1, PCOut);
-    Registers registers(RegWrite, Instruction[19:15], Instruction[24:20], Instruction[11:7], MUXOut2, readData1, readData2);
+    Registers registers(RegWrite, instruction[19:15], instruction[24:20], instruction[11:7], MUXOut2, readData1, readData2);
 
 endmodule
