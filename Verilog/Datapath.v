@@ -13,19 +13,16 @@ module Datapath_Testbench;
         for (integer i = 0; i < 32; i = i + 1) begin
             $display("DataMemory [%2d] = %d", i, datapath.datamemory.memory[i]);
         end
-
         $display("\n\n");
 
         for (integer i = 0; i < 32; i = i + 1) begin
             $display("InstructionMemory [%2d] = 0x%h", i, datapath.instructionmemory.memory[i]);
         end
-
         $display("\n\n");
 
         for (integer i = 0; i < 32; i = i + 1) begin
             $display("Register [%2d] = %d", i, datapath.registers.registers[i]);
         end
-        
         $display("\n\n");
     end
 
@@ -39,10 +36,10 @@ module Datapath_Testbench;
     initial begin
         clk = 0;
         reset = 1;
-        #10 reset = 0;
+        #2 reset = 0;
     end
 
-    always #1 clk <= ~clk;
+    always #1 clk = ~clk;
 
 endmodule
 
@@ -65,7 +62,7 @@ module Datapath (
 
     Add add0(PCOut, 32'h4, addout0);
     Add add1(PCOut, Immediate, addout1);
-    ALU alu(readData1, MUXOut0, ALUOp, ALUResult, zero);
+    ALU alu(readData1, MUXOut0, ALUControl, ALUResult, zero);
     ALUControl alucontrol(Instruction[14:12], ALUOp, ALUControl);
     Control control(Instruction[6:0], Branch, MemRead, MemtoReg, ALUOp, MemWrite, ALUSrc, RegWrite);
     DataMemory datamemory(MemWrite, MemRead, ALUResult, readData2, readData);

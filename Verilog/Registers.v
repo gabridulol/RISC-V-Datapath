@@ -9,16 +9,16 @@ module Registers (
     reg [31:0] registers [0:31];
 
     always @(readReg1, registers[readReg1]) begin
-        readData1 <= registers[readReg1];
+        readData1 = registers[readReg1];
     end
 
     always @(readReg2, registers[readReg2]) begin
-        readData2 <= registers[readReg2];
+        readData2 = registers[readReg2];
     end
 
     always @(*) begin
         if (RegWrite) begin
-            registers[writeReg] <= writeData;
+            registers[writeReg] = writeData;
         end
     end
 

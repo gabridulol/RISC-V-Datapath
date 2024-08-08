@@ -6,9 +6,9 @@ module PC (
 
     always @(posedge clk) begin
         if (reset) begin
-            PCOut <= 32'b0;
+            PCOut = 32'b0;
         end else begin
-            PCOut <= PCIn; 
+            PCOut = PCIn; 
         end
     end
 
