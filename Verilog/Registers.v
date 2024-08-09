@@ -8,6 +8,10 @@ module Registers (
 
     reg [31:0] registers [0:31];
 
+    always @(registers[0]) begin
+        registers[0] = 0;
+    end
+
     always @(readReg1, registers[readReg1]) begin
         readData1 = registers[readReg1];
     end
