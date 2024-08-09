@@ -29,7 +29,7 @@ module Datapath_Testbench;
         $display("Instruction = %h", datapath.instructionmemory.instruction);
         for (integer i = 0; i < 32; i = i + 1) begin
             $display("Register [%2d] = %d", i, datapath.registers.registers[i]);
-        end 
+        end
         $display();
     end
 
@@ -70,7 +70,7 @@ module Datapath (
     InstructionMemory instructionmemory(PCOut, instruction);
     Mux mux0(ALUSrc, readData2, immediate, MUXOut0);
     Mux mux1(addout1, addout0, Branch & zero, MUXOut1);
-    Mux mux2(readData, ALUResult, MemtoReg, MUXOut2);
+    Mux mux2(ALUResult, readData, MemtoReg, MUXOut2);
     PC pc(clk, reset, MUXOut1, PCOut);
     Registers registers(RegWrite, instruction[19:15], instruction[24:20], instruction[11:7], MUXOut2, readData1, readData2);
 
