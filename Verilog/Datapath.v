@@ -71,8 +71,8 @@ module Datapath (
     ImmGen immgen(instruction, immediate);
     InstructionMemory instructionmemory(PCOut, instruction);
     Mux mux0(ALUSrc, readData2, immediate, MUXOut0);
-    Mux mux1(addout1, addout0, Branch & zero, MUXOut1);
-    Mux mux2(ALUResult, readData, MemtoReg, MUXOut2);
+    Mux mux1(Branch & zero, addout0, addout1, MUXOut1);
+    Mux mux2(MemtoReg, ALUResult, readData, MUXOut2);
     PC pc(clk, reset, MUXOut1, PCOut);
     Registers registers(RegWrite, instruction[19:15], instruction[24:20], instruction[11:7], MUXOut2, readData1, readData2);
 
