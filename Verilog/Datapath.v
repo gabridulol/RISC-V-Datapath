@@ -10,6 +10,8 @@ module Datapath_Testbench;
         $readmemb("Verilog/Input/InstructionMemory.mem", datapath.instructionmemory.memory);
         $readmemb("Verilog/Input/Registers.mem", datapath.registers.registers);
 
+        $display("Program Counter = %2d", datapath.pc.PCOut);
+        $display("Instruction = %h", datapath.instructionmemory.instruction);
         for (integer i = 0; i < 32; i = i + 1) begin
             $display("DataMemory [%2d] = %d", i, datapath.datamemory.memory[i]);
         end
