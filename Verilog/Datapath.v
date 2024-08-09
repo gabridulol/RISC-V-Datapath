@@ -10,9 +10,6 @@ module Datapath_Testbench;
         $readmemb("Verilog/Input/InstructionMemory.mem", datapath.instructionmemory.memory);
         $readmemb("Verilog/Input/Registers.mem", datapath.registers.registers);
 
-        $display("Program Counter = %2d", datapath.pc.PCOut);
-        $display("Instruction = %h", datapath.instructionmemory.instruction);
-        $display();
         for (integer i = 0; i < 32; i = i + 1) begin
             $display("DataMemory [%2d] = %d", i, datapath.datamemory.memory[i]);
         end
@@ -25,12 +22,12 @@ module Datapath_Testbench;
             $display("Register [%2d] = %d", i, datapath.registers.registers[i]);
         end
         $display();
-    end
-
-    always @(datapath.instructionmemory.instruction) begin
         $display("Program Counter = %2d", datapath.pc.PCOut);
         $display("Instruction = %h", datapath.instructionmemory.instruction);
         $display();
+    end
+
+    always @(datapath.instructionmemory.instruction) begin
         for (integer i = 0; i < 32; i = i + 1) begin
             $display("DataMemory [%2d] = %d", i, datapath.datamemory.memory[i]);
         end
@@ -38,6 +35,9 @@ module Datapath_Testbench;
         for (integer i = 0; i < 32; i = i + 1) begin
             $display("Register [%2d] = %d", i, datapath.registers.registers[i]);
         end
+        $display();
+        $display("Program Counter = %2d", datapath.pc.PCOut);
+        $display("Instruction = %h", datapath.instructionmemory.instruction);
         $display();
     end
 
