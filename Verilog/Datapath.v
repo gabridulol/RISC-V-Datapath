@@ -12,6 +12,7 @@ module Datapath_Testbench;
 
         $display("Program Counter = %2d", datapath.pc.PCOut);
         $display("Instruction = %h", datapath.instructionmemory.instruction);
+        $display();
         for (integer i = 0; i < 32; i = i + 1) begin
             $display("DataMemory [%2d] = %d", i, datapath.datamemory.memory[i]);
         end
@@ -29,6 +30,7 @@ module Datapath_Testbench;
     always @(datapath.instructionmemory.instruction) begin
         $display("Program Counter = %2d", datapath.pc.PCOut);
         $display("Instruction = %h", datapath.instructionmemory.instruction);
+        $display();
         for (integer i = 0; i < 32; i = i + 1) begin
             $display("DataMemory [%2d] = %d", i, datapath.datamemory.memory[i]);
         end
