@@ -22,7 +22,7 @@ module ALU (
             AND: ALUResult = a & b;
             ORI: ALUResult = a | b;
             SLL: ALUResult = a << b; 
-            BNE: ALUResult = (a != b) ? 1 : 0; 
+            BNE: ALUResult = (a != b) ? 0 : 1; 
             default: ALUResult = 32'b0;   
         endcase
         zero = (ALUResult == 32'b0) ? 1'b1 : 1'b0;
