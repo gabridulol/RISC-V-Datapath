@@ -1,0 +1,2 @@
+Info (10281): Verilog HDL Declaration information at Verilog1.v(197): object "ALUControl" differs only in case from object "alucontrol" in the same scope File: /home/gabriel/Documentos/myWorkspace/RISC-V-Datapath/FPGA/Verilog1.v Line: 197
+Info (10281): Verilog HDL Declaration information at Verilog1.v(189): object "PC" differs only in case from object "pc" in the same scope File: /home/gabriel/Documentos/myWorkspace/RISC-V-Datapath/FPGA/Verilog1.v Line: 189

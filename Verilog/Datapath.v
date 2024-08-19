@@ -65,7 +65,7 @@ module Datapath (
     wire [2:0] ALUOp;
     wire [3:0] ALUControl;
     wire [31:0] ALUResult;
-    wire [6:0] hex0, hex1;
+    wire [6:0] HEX0, HEX1;
     wire zero;
     
     Add add0(PC, 4, addout0);
@@ -74,7 +74,7 @@ module Datapath (
     ALUControl alucontrol(instruction[14:12], ALUOp, ALUControl);
     Control control(instruction[6:0], Branch, MemRead, MemtoReg, ALUOp, MemWrite, ALUSrc, RegWrite);
     DataMemory datamemory(MemWrite, MemRead, ALUResult, readData2, readData3);
-    Display display(PC, hex0, hex1);
+    Display display(PC, HEX0, HEX1);
     ImmGen immgen(instruction, immediate);
     InstructionMemory instructionmemory(PC, instruction);
     Mux mux0(ALUSrc, readData2, immediate, muxout0);

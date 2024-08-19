@@ -1,7 +1,7 @@
 module Display (
     input wire [31:0] PC,
-    output reg [6:0] hex0,
-    output reg [6:0] hex1
+    output reg [6:0] HEX0,
+    output reg [6:0] HEX1
 );
 
     function [6:0] to_7seg;
@@ -25,8 +25,8 @@ module Display (
     wire [3:0] tens_digit = (PC / 4) / 10;
 
     always @(PC) begin
-        hex0 = to_7seg(units_digit);
-        hex1 = to_7seg(tens_digit);
+        HEX0 = to_7seg(units_digit);
+        HEX1 = to_7seg(tens_digit);
     end
 
 endmodule
