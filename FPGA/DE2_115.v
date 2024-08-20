@@ -185,7 +185,7 @@ module DE2_115(
 Datapath datapath (
 	.clk(KEY[0]),
 	
-	.reset(SW[15])
+	.reset(SW[17])
 );
 
 Display display (
