@@ -182,17 +182,25 @@ module DE2_115(
 //=======================================================
 //  REG/WIRE declarations
 //=======================================================
-Datapath datapath (
-	.clk(KEY[0]),
+
+wire [31:0] ProgramCounter_FPGA;
 	
-	.reset(SW[17])
+Datapath datapath (
+	.clk(~KEY[0]),
+	
+	.reset(SW[17]),
+	
+	.ProgramCounter(ProgramCounter_FPGA)
 );
 
 Display display (
+	.PC(ProgramCounter_FPGA),
+	
 	.HEX0(HEX6[6:0]),
 	
 	.HEX1(HEX7[6:0])
-); 
+);
+
 //=======================================================
 //  Structural coding
 //=======================================================

@@ -2,4 +2,112 @@
 Timing Analyzer Summary
 ------------------------------------------------------------
 
+Type  : Slow 1200mV 85C Model Setup 'SW[17]'
+Slack : -28.623
+TNS   : -27247.880
+
+Type  : Slow 1200mV 85C Model Setup 'Datapath:datapath|PC:pc|PCOut[2]'
+Slack : -27.340
+TNS   : -27169.045
+
+Type  : Slow 1200mV 85C Model Setup 'KEY[0]'
+Slack : -16.953
+TNS   : -657.520
+
+Type  : Slow 1200mV 85C Model Hold 'Datapath:datapath|PC:pc|PCOut[2]'
+Slack : -11.482
+TNS   : -6731.143
+
+Type  : Slow 1200mV 85C Model Hold 'KEY[0]'
+Slack : 1.304
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'SW[17]'
+Slack : 1.446
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Datapath:datapath|PC:pc|PCOut[2]'
+Slack : -12.485
+TNS   : -111682.262
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'KEY[0]'
+Slack : -3.000
+TNS   : -82.670
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'SW[17]'
+Slack : -3.000
+TNS   : -3.000
+
+Type  : Slow 1200mV 0C Model Setup 'SW[17]'
+Slack : -26.252
+TNS   : -25006.918
+
+Type  : Slow 1200mV 0C Model Setup 'Datapath:datapath|PC:pc|PCOut[2]'
+Slack : -25.164
+TNS   : -25022.302
+
+Type  : Slow 1200mV 0C Model Setup 'KEY[0]'
+Slack : -15.340
+TNS   : -594.408
+
+Type  : Slow 1200mV 0C Model Hold 'Datapath:datapath|PC:pc|PCOut[2]'
+Slack : -10.442
+TNS   : -6182.948
+
+Type  : Slow 1200mV 0C Model Hold 'KEY[0]'
+Slack : 1.121
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'SW[17]'
+Slack : 1.233
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Datapath:datapath|PC:pc|PCOut[2]'
+Slack : -11.188
+TNS   : -100977.049
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'KEY[0]'
+Slack : -3.000
+TNS   : -82.670
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'SW[17]'
+Slack : -3.000
+TNS   : -3.000
+
+Type  : Fast 1200mV 0C Model Setup 'Datapath:datapath|PC:pc|PCOut[2]'
+Slack : -14.681
+TNS   : -14199.981
+
+Type  : Fast 1200mV 0C Model Setup 'SW[17]'
+Slack : -14.561
+TNS   : -13326.702
+
+Type  : Fast 1200mV 0C Model Setup 'KEY[0]'
+Slack : -7.980
+TNS   : -303.094
+
+Type  : Fast 1200mV 0C Model Hold 'Datapath:datapath|PC:pc|PCOut[2]'
+Slack : -5.565
+TNS   : -3328.920
+
+Type  : Fast 1200mV 0C Model Hold 'SW[17]'
+Slack : 0.121
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'KEY[0]'
+Slack : 0.415
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Datapath:datapath|PC:pc|PCOut[2]'
+Slack : -5.966
+TNS   : -49663.766
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'SW[17]'
+Slack : -3.000
+TNS   : -886.602
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'KEY[0]'
+Slack : -3.000
+TNS   : -97.278
+
 ------------------------------------------------------------
