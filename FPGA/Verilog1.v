@@ -166,7 +166,7 @@ module DataMemory (
 
     always @(*) begin
         if (reset) begin
-            memory[0] = 32'b0;
+            memory[0] = 32'b00000000000000000000000000000100;
             memory[1] = 32'b0;
             memory[2] = 32'b0;
             memory[3] = 32'b0;
@@ -258,29 +258,35 @@ module Display (
     output reg [6:0] HEX1
 );
 
-    function [6:0] to_7seg;
-        input [3:0] value;
-        case(value)
-            4'd0: to_7seg = 7'b1000000; // 0
-            4'd1: to_7seg = 7'b1111001; // 1
-            4'd2: to_7seg = 7'b0100100; // 2
-            4'd3: to_7seg = 7'b0110000; // 3
-            4'd4: to_7seg = 7'b0011001; // 4
-            4'd5: to_7seg = 7'b0010010; // 5
-            4'd6: to_7seg = 7'b0000010; // 6
-            4'd7: to_7seg = 7'b1111000; // 7
-            4'd8: to_7seg = 7'b0000000; // 8
-            4'd9: to_7seg = 7'b0010000; // 9
-            default: to_7seg = 7'b1111111; // Error
-        endcase
-    endfunction
-
-    wire [3:0] units_digit = (PC / 4) % 10;
-    wire [3:0] tens_digit = (PC / 4) / 10;
-
     always @(PC) begin
-        HEX0 = to_7seg(units_digit);
-        HEX1 = to_7seg(tens_digit);
+        if (PC <= 124) begin
+            case ((PC / 4) % 10)
+                4'd0: HEX0 = 7'b1000000; // 0
+                4'd1: HEX0 = 7'b1111001; // 1
+                4'd2: HEX0 = 7'b0100100; // 2
+                4'd3: HEX0 = 7'b0110000; // 3
+                4'd4: HEX0 = 7'b0011001; // 4
+                4'd5: HEX0 = 7'b0010010; // 5
+                4'd6: HEX0 = 7'b0000010; // 6
+                4'd7: HEX0 = 7'b1111000; // 7
+                4'd8: HEX0 = 7'b0000000; // 8
+                4'd9: HEX0 = 7'b0010000; // 9
+                default: HEX0 = 7'b1111111; // Error
+            endcase
+            case ((PC / 4) / 10)
+                4'd0: HEX1 = 7'b1000000; // 0
+                4'd1: HEX1 = 7'b1111001; // 1
+                4'd2: HEX1 = 7'b0100100; // 2
+                4'd3: HEX1 = 7'b0110000; // 3
+                4'd4: HEX1 = 7'b0011001; // 4
+                4'd5: HEX1 = 7'b0010010; // 5
+                4'd6: HEX1 = 7'b0000010; // 6
+                4'd7: HEX1 = 7'b1111000; // 7
+                4'd8: HEX1 = 7'b0000000; // 8
+                4'd9: HEX1 = 7'b0010000; // 9
+                default: HEX1 = 7'b1111111; // Error
+            endcase
+        end
     end
 
 endmodule

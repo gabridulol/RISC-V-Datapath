@@ -184,6 +184,13 @@ module DE2_115(
 //=======================================================
 
 wire [31:0] ProgramCounter_FPGA;
+
+assign HEX5 [6:0] = 7'b1111111;
+assign HEX4 [6:0] = 7'b1111111;
+assign HEX3 [6:0] = 7'b1111111;
+assign HEX2 [6:0] = 7'b1111111;
+assign HEX1 [6:0] = 7'b1111111;
+assign HEX0 [6:0] = 7'b1111111;
 	
 Datapath datapath (
 	.clk(~KEY[0]),
@@ -198,7 +205,7 @@ Display display (
 	
 	.HEX0(HEX6[6:0]),
 	
-	.HEX1(HEX7[6:0])
+	.HEX1(HEX7[6:0]),
 );
 
 //=======================================================
