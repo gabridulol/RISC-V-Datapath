@@ -1,5 +1,5 @@
 Timing Analyzer report for DE2_115
-Thu Aug 22 14:40:48 2024
+Sat Aug 24 19:58:05 2024
 Quartus Prime Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
 
 
@@ -115,15 +115,15 @@ https://fpgasoftware.intel.com/eula.
 ; Number detected on machine ; 20          ;
 ; Maximum allowed            ; 14          ;
 ;                            ;             ;
-; Average used               ; 1.80        ;
+; Average used               ; 1.86        ;
 ; Maximum used               ; 14          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;  22.2%      ;
-;     Processor 3            ;  19.0%      ;
-;     Processor 4            ;  17.7%      ;
-;     Processors 5-14        ;   2.1%      ;
+;     Processor 2            ;  23.7%      ;
+;     Processor 3            ;  20.4%      ;
+;     Processor 4            ;  18.8%      ;
+;     Processors 5-14        ;   2.3%      ;
 +----------------------------+-------------+
 
 
@@ -1384,8 +1384,8 @@ No paths to report.
 ; -26.978 ; Datapath:datapath|Registers:registers|registers[7][20] ; Datapath:datapath|DataMemory:datamemory|memory[15][19] ; Datapath:datapath|PC:pc|PCOut[2] ; Datapath:datapath|PC:pc|PCOut[2] ; 1.000        ; 2.238      ; 29.161     ;
 ; -26.976 ; Datapath:datapath|Registers:registers|registers[6][26] ; Datapath:datapath|DataMemory:datamemory|memory[22][6]  ; Datapath:datapath|PC:pc|PCOut[2] ; Datapath:datapath|PC:pc|PCOut[2] ; 1.000        ; 2.055      ; 29.094     ;
 ; -26.968 ; Datapath:datapath|Registers:registers|registers[3][12] ; Datapath:datapath|DataMemory:datamemory|memory[13][19] ; Datapath:datapath|PC:pc|PCOut[2] ; Datapath:datapath|PC:pc|PCOut[2] ; 1.000        ; 3.926      ; 31.087     ;
-; -26.964 ; Datapath:datapath|Registers:registers|registers[5][4]  ; Datapath:datapath|DataMemory:datamemory|memory[15][19] ; Datapath:datapath|PC:pc|PCOut[2] ; Datapath:datapath|PC:pc|PCOut[2] ; 1.000        ; 1.355      ; 28.264     ;
 ; -26.964 ; Datapath:datapath|Registers:registers|registers[7][26] ; Datapath:datapath|DataMemory:datamemory|memory[13][19] ; Datapath:datapath|PC:pc|PCOut[2] ; Datapath:datapath|PC:pc|PCOut[2] ; 1.000        ; 3.160      ; 30.317     ;
+; -26.964 ; Datapath:datapath|Registers:registers|registers[5][4]  ; Datapath:datapath|DataMemory:datamemory|memory[15][19] ; Datapath:datapath|PC:pc|PCOut[2] ; Datapath:datapath|PC:pc|PCOut[2] ; 1.000        ; 1.355      ; 28.264     ;
 ; -26.958 ; Datapath:datapath|Registers:registers|registers[6][12] ; Datapath:datapath|DataMemory:datamemory|memory[13][19] ; Datapath:datapath|PC:pc|PCOut[2] ; Datapath:datapath|PC:pc|PCOut[2] ; 1.000        ; 2.889      ; 30.040     ;
 ; -26.957 ; Datapath:datapath|Registers:registers|registers[7][1]  ; Datapath:datapath|DataMemory:datamemory|memory[22][6]  ; Datapath:datapath|PC:pc|PCOut[2] ; Datapath:datapath|PC:pc|PCOut[2] ; 1.000        ; 1.761      ; 28.781     ;
 ; -26.951 ; Datapath:datapath|Registers:registers|registers[7][12] ; Datapath:datapath|DataMemory:datamemory|memory[13][19] ; Datapath:datapath|PC:pc|PCOut[2] ; Datapath:datapath|PC:pc|PCOut[2] ; 1.000        ; 3.335      ; 30.479     ;
@@ -4614,7 +4614,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
-    Info: Processing started: Thu Aug 22 14:40:43 2024
+    Info: Processing started: Sat Aug 24 19:57:54 2024
 Info: Command: quartus_sta DE2_115 -c DE2_115
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -6943,9 +6943,9 @@ Info (332146): Worst-case minimum pulse width slack is -5.787
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 6 warnings
-    Info: Peak virtual memory: 700 megabytes
-    Info: Processing ended: Thu Aug 22 14:40:47 2024
-    Info: Elapsed time: 00:00:04
-    Info: Total CPU time (on all processors): 00:00:06
+    Info: Peak virtual memory: 706 megabytes
+    Info: Processing ended: Sat Aug 24 19:58:05 2024
+    Info: Elapsed time: 00:00:11
+    Info: Total CPU time (on all processors): 00:00:18
 
 
